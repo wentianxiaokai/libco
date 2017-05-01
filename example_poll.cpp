@@ -53,8 +53,6 @@ static int SetNonBlock(int iSock)
     return ret;
 }
 
-
-
 static void SetAddr(const char *pszIP,const unsigned short shPort,struct sockaddr_in &addr)
 {
 	bzero(&addr,sizeof(addr));
@@ -103,6 +101,7 @@ static int CreateTcpSocket(const unsigned short shPort  = 0 ,const char *pszIP  
 
 static void *poll_routine( void *arg )
 {
+	// pid 最大值固定为 204800，这个要注意
 	co_enable_hook_sys();
 
 	vector<task_t> &v = *(vector<task_t>*)arg;
